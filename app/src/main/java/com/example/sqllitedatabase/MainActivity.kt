@@ -1,10 +1,9 @@
 package com.example.sqllitedatabase
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.database.sqlite.SQLiteDatabase
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +15,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         dbHelper = DbHelper(this)
-        dbHelper.insertData("sagheer" , "2k17/CSE/89")
+
 
     }
+
+    fun insertData(view: View) {
+
+        val isDataInserted = dbHelper.insertData("sagheer", "2k17/CSE/89")
+
+        if (isDataInserted)
+            showToast("Data Inserted")
+        else
+            showToast("Data Not Inserted")
+    }
+
+    fun showToast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
